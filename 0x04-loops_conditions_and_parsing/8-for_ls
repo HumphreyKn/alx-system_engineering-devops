@@ -5,7 +5,7 @@
 for file in *;
 do
 	if [[ ! $file =~ ^\..* && $file == *-* ]]; then
-		display=$(echo "$file" | cut -d '-' -f 2-)
+		display=$(echo ls "$file" | cut -d '-' -f 2-)
 		echo "$display"
 	fi
 done
