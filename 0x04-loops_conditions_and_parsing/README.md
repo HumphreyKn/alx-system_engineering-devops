@@ -157,5 +157,100 @@ done
 
 These operators are used for making decisions based on file attributes, numeric values, or string comparisons in Bash scripts.
 
+Comparison operators in bash are used to compare different types of values, such as integers, strings, files, etc. They can be used in conditional statements, such as if, while, case, etc., to control the flow of the script. Depending on the type of value, different operators are available. Here is a summary of the main comparison operators in bash:
+
+- For **integer** values, you can use the following operators:
+    * `-eq`: equal to
+    * `-ne`: not equal to
+    * `-lt`: less than
+    * `-le`: less than or equal to
+    * `-gt`: greater than
+    * `-ge`: greater than or equal to
+    * These operators are used inside `[ ]` or `[[ ]]` brackets, or inside `(( ))` parentheses. For example:
+
+```bash
+a=10
+b=20
+if [ "$a" -eq "$b" ]; then
+  echo "a and b are equal"
+elif [ "$a" -lt "$b" ]; then
+  echo "a is less than b"
+else
+  echo "a is greater than b"
+fi
+```
+
+- For **string** values, you can use the following operators:
+    * `=`: equal to
+    * `!=`: not equal to
+    * `<`: less than (in ASCII alphabetical order)
+    * `>`: greater than (in ASCII alphabetical order)
+    * `-z`: the string is null (empty)
+    * `-n`: the string is not null (not empty)
+    * These operators are used inside `[ ]` or `[[ ]]` brackets. For example:
+
+```bash
+str1="hello"
+str2="world"
+if [ "$str1" = "$str2" ]; then
+  echo "str1 and str2 are equal"
+elif [ "$str1" > "$str2" ]; then
+  echo "str1 is greater than str2"
+else
+  echo "str1 is less than str2"
+fi
+```
+
+- For **file** values, you can use the following operators:
+    * `-e`: the file exists
+    * `-f`: the file is a regular file
+    * `-d`: the file is a directory
+    * `-h` or `-L`: the file is a symbolic link
+    * `-b`: the file is a block device
+    * `-c`: the file is a character device
+    * `-p`: the file is a named pipe
+    * `-s`: the file size is greater than zero
+    * `-t`: the file descriptor is associated with a terminal
+    * `-r`: the file is readable
+    * `-w`: the file is writable
+    * `-x`: the file is executable
+    * `-g`: the file has the set-group-ID bit set
+    * `-u`: the file has the set-user-ID bit set
+    * `-k`: the file has the sticky bit set
+    * `-O`: the file is owned by the current user
+    * `-G`: the file is owned by the same group as the current user
+    * `-N`: the file has been modified since it was last read
+    * `-nt`: the file is newer than another file
+    * `-ot`: the file is older than another file
+    * `-ef`: the file is the same as another file
+    * These operators are used inside `[ ]` or `[[ ]]` brackets. For example:
+
+```bash
+file1="test.txt"
+file2="backup.txt"
+if [ -e "$file1" ]; then
+  echo "file1 exists"
+  if [ -f "$file1" ]; then
+    echo "file1 is a regular file"
+    if [ -s "$file1" ]; then
+      echo "file1 is not empty"
+      if [ "$file1" -nt "$file2" ]; then
+        echo "file1 is newer than file2"
+      elif [ "$file1" -ot "$file2" ]; then
+        echo "file1 is older than file2"
+      elif [ "$file1" -ef "$file2" ]; then
+        echo "file1 and file2 are the same file"
+      fi
+    else
+      echo "file1 is empty"
+    fi
+  else
+    echo "file1 is not a regular file"
+  fi
+else
+  echo "file1 does not exist"
+fi
+```
+
 ---
 
