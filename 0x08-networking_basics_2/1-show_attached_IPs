@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Dislays all active IPV4 IPs
+
+ifconfig | grep 'inet ' | awk '{print $2}'
